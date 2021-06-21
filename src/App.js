@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import { FormControl,InputLabel,Input,FormHelperText, Select,MenuItem } from '@material-ui/core';
+import { FormControl,InputLabel,Input,FormHelperText, CardContent,Select,MenuItem,Card} from '@material-ui/core';
 import {useState,useEffect} from 'react'
 import Test from './Test';
+import Infobox from './Infobox';
+import Map from './Map';
 
 function App() {
   const[countries, setCountries]=useState([])
@@ -23,18 +25,20 @@ function App() {
   
   const onCountryChange=(e)=>{
  setChangeCountry( e.target.value)
- console.log(e)
+ 
   }
-  console.log("o",changeCountry)
+  console.log("test",changeCountry)
   
   
   
   
   return (
     <div className="app">
-      <div className="app_heaader">
+      <div className="app__left">
+      <div className="app__header">
       <h1>Covid tracker</h1>
      <FormControl className="app_dropdown">
+
        <Select
        variant="outlined"
        onChange={onCountryChange}
@@ -43,12 +47,27 @@ function App() {
        {countries.map((country)=>(
           <MenuItem value={country.value}>{country.name}</MenuItem>
         ) )}
- 
-  </Select>
+       </Select>
   
 </FormControl>
       </div>
+      <div className="app__stats">
+        <Infobox title="Coronavirus cases" total={2000} cases={1234}/>
+        <Infobox title="Recovered" total={2000} cases={1234}/>
+        <Infobox title="Deaths" total={2000} cases={1234}/>
+      </div>
+      <Map/>
+      </div>
     
+    <Card className="app_right">
+    <CardContent>
+       <h3>Worldwide new cases</h3>
+       
+       
+      </CardContent>
+      
+
+    </Card>
     </div>
   );
 }

@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+}
+.app__header {
+    display:flex;
+    align-items:center;
+    margin-bottom:20px;
+    justify-content:space-between;
+}
+
+.app__stats{
+    display:flex;
+    justify-content:space-between;
+
+    
+}
+
+.app{
+    display:flex;
+    justify-content:space-evenly;
+}
