@@ -6,6 +6,7 @@ import Test from './Test';
 
 function App() {
   const[countries, setCountries]=useState([])
+  const[country, setCountry]=useState("worldwide")
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/countries")
     .then((response)=>{ return response.json()})
@@ -20,6 +21,12 @@ function App() {
   
   }, [])
   
+  const onCountryChange=(e)=>{
+   setCountry(e.target.value);
+  
+  }
+  console.log("countrychange",country)
+  
   return (
     <div className="app">
       <div className="app_heaader">
@@ -27,7 +34,9 @@ function App() {
      <FormControl className="app_dropdown">
        <Select
        variant="outlined"
-       value="abc">
+       onchange={onCountryChange}
+       value={country}>
+           <MenuItem value="worldwide">Worldwide</MenuItem>
        {countries.map((country)=>(
           <MenuItem value={country.value}>{country.name}</MenuItem>
         ) )}
@@ -36,7 +45,7 @@ function App() {
   
 </FormControl>
       </div>
-    <Test/>
+    
     </div>
   );
 }
