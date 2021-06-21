@@ -22,6 +22,8 @@ function App() {
     })
   
   }, [])
+
+  
   
   const onCountryChange=(e)=>{
  setChangeCountry( e.target.value)
@@ -56,6 +58,7 @@ function App() {
         <Infobox title="Recovered" total={2000} cases={1234}/>
         <Infobox title="Deaths" total={2000} cases={1234}/>
       </div>
+     
       <Map/>
       </div>
     
