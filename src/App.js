@@ -7,8 +7,11 @@ import Infobox from './Infobox';
 import Map from './Map';
 
 function App() {
+ 
   const[countries, setCountries]=useState([])
   const[changeCountry, setChangeCountry]=useState("worldwide")
+  const[countryInfo, setCountryInfo]=useState({})
+  
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/countries")
     .then((response)=>{ return response.json()})
@@ -24,12 +27,27 @@ function App() {
   }, [])
 
   
-  
-  const onCountryChange=(e)=>{
- setChangeCountry( e.target.value)
+  const onCountryChange=(e)=> {
+
+ const countryCode= e.target.value;
+setChangeCountry(countryCode)
  
-  }
+  
   console.log("test",changeCountry)
+  
+  const url= 
+  countryCode ==='worldwide'
+  ?"https://disease.sh/v3/covid-19/all"
+  :`https://disease.sh/v3/covid-19/countries/${countryCode}`
+  
+  fetch(url)
+  .then((response)=>{ return response.json()})
+  .then((data=>{
+   // console.log(data)
+    setCountryInfo(data)
+  
+  }))
+}
   
   
   
