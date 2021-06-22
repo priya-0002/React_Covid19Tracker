@@ -27,7 +27,7 @@ function App() {
   }, [])
 
   
-  const onCountryChange=(e)=> {
+  const onCountryChange=(e) => {
 
  const countryCode= e.target.value;
 setChangeCountry(countryCode)
@@ -43,8 +43,9 @@ setChangeCountry(countryCode)
   fetch(url)
   .then((response)=>{ return response.json()})
   .then((data=>{
-   // console.log(data)
+   console.log(data)
     setCountryInfo(data)
+    setChangeCountry(countryCode)
   
   }))
 }
@@ -72,9 +73,9 @@ setChangeCountry(countryCode)
 </FormControl>
       </div>
       <div className="app__stats">
-        <Infobox title="Coronavirus cases" total={2000} cases={1234}/>
-        <Infobox title="Recovered" total={2000} cases={1234}/>
-        <Infobox title="Deaths" total={2000} cases={1234}/>
+        <Infobox title="Coronavirus cases" total={2000} cases={countryInfo.todayCases}/>
+        <Infobox title="Recovered" total={2000} cases={countryInfo.todayRecovered}/>
+        <Infobox title="Deaths" total={2000} cases={countryInfo.todayDeaths}/>
       </div>
      
       <Map/>
