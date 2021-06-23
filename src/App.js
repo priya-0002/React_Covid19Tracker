@@ -35,19 +35,7 @@ setChangeCountry(countryCode)
   
   console.log("test",changeCountry)
   
-  const url= 
-  countryCode ==='worldwide'
-  ?"https://disease.sh/v3/covid-19/all"
-  :`https://disease.sh/v3/covid-19/countries/${countryCode}`
   
-  fetch(url)
-  .then((response)=>{ return response.json()})
-  .then((data=>{
-   console.log(data)
-    setCountryInfo(data)
-    setChangeCountry(countryCode)
-  
-  }))
 }
   
   
