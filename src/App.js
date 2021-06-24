@@ -13,6 +13,17 @@ function App() {
   const[countryInfo, setCountryInfo]=useState({})
   
   useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+    .then((response)=>{ return response.json()})
+    .then((data)=>{
+      setCountryInfo(data)
+  
+    })
+    
+  }, [])
+
+
+  useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/countries")
     .then((response)=>{ return response.json()})
     .then((data)=>{
@@ -45,7 +56,7 @@ setChangeCountry(countryCode)
   .then((data=>{
    console.log(data)
     setCountryInfo(data)
-    setChangeCountry(countryCode)
+   
   
   }))
 }
@@ -73,9 +84,9 @@ setChangeCountry(countryCode)
 </FormControl>
       </div>
       <div className="app__stats">
-        <Infobox title="Coronavirus cases" total={2000} cases={countryInfo.todayCases}/>
-        <Infobox title="Recovered" total={2000} cases={countryInfo.todayRecovered}/>
-        <Infobox title="Deaths" total={2000} cases={countryInfo.todayDeaths}/>
+        <Infobox title="Coronavirus cases" total={countryInfo.cases} cases={countryInfo.todayCases}/>
+        <Infobox title="Recovered" total={countryInfo.recovered} cases={countryInfo.todayRecovered}/>
+        <Infobox title="Deaths" total={countryInfo.deaths} cases={countryInfo.todayDeaths}/>
       </div>
      
       <Map/>
