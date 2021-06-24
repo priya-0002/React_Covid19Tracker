@@ -5,12 +5,19 @@ import {useState,useEffect} from 'react'
 import Test from './Test';
 import Infobox from './Infobox';
 import Map from './Map';
+import Table from './Table';
+import './table.css'
+import {sortData} from"./util"
+import Linegraph from './Linegraph';
+
+
 
 function App() {
  
   const[countries, setCountries]=useState([])
   const[changeCountry, setChangeCountry]=useState("worldwide")
   const[countryInfo, setCountryInfo]=useState({})
+  const[tableData,setTableData] = useState([])
   
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -32,7 +39,11 @@ function App() {
     name:country.country,
     value:country.countryInfo.iso2
     }));
+
+    const sortedData=sortData(data);
     setCountries(countries)
+    setTableData(sortedData);
+    console.log("check",data)
     })
   
   }, [])
@@ -94,13 +105,15 @@ setChangeCountry(countryCode)
     
     <Card className="app_right">
     <CardContent>
+      <h3>Live Cases by Country</h3>
+       <Table countries={tableData}/>
        <h3>Worldwide new cases</h3>
-       
-       
       </CardContent>
       
 
     </Card>
+    <Test/>
+    <Linegraph/>
     </div>
   );
 }
