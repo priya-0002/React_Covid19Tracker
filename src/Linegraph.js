@@ -16,7 +16,7 @@ useEffect(() => {
     }, [])
     return (
         <div>
-        
+          <h1>I am a graph</h1>  
         </div>
     )
 }
