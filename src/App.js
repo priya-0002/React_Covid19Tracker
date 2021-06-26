@@ -4,11 +4,11 @@ import { FormControl,InputLabel,Input,FormHelperText, CardContent,Select,MenuIte
 import {useState,useEffect} from 'react'
 import Test from './Test';
 import Infobox from './Infobox';
-import Map from './Map';
+import Mapp from './Mapp';
 import Table from './Table';
 import './table.css'
 import {sortData} from"./util"
-import Linegraph from './Linegraph';
+
 
 
 
@@ -18,7 +18,8 @@ function App() {
   const[changeCountry, setChangeCountry]=useState("worldwide")
   const[countryInfo, setCountryInfo]=useState({})
   const[tableData,setTableData] = useState([])
-  
+  const[mapCenter,setMapCenter] = useState({lat:34.80746,lng:-40.4796})
+  const [mapZoom,setMapZoom] = useState(3)
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
     .then((response)=>{ return response.json()})
@@ -65,12 +66,16 @@ setChangeCountry(countryCode)
   fetch(url)
   .then((response)=>{ return response.json()})
   .then((data=>{
-   console.log(data)
+   console.log("checking",data)
     setCountryInfo(data)
-   
+   setMapCenter([data.countryInfo.lat,data.countryInfo.long])
+   setMapZoom(4)
+  
   
   }))
 }
+
+console.log("priya",mapCenter)
   
   
   
@@ -100,7 +105,7 @@ setChangeCountry(countryCode)
         <Infobox title="Deaths" total={countryInfo.deaths} cases={countryInfo.todayDeaths}/>
       </div>
      
-      <Map/>
+      <Mapp center ={mapCenter}  zoom={mapZoom}/>
       </div>
     
     <Card className="app_right">
@@ -113,7 +118,7 @@ setChangeCountry(countryCode)
 
     </Card>
     <Test/>
-    <Linegraph/>
+    
     </div>
   );
 }
