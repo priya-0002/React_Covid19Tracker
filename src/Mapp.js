@@ -8,7 +8,7 @@ const Mapp = (props) => {
     return ( 
         <div className="map">
   
-  <MapContainer style={{ height: "500px", width: "100%" }}  center={center} zoom={zoom} >
+  <MapContainer key={center} style={{ height: "500px", width: "100%" }}  center={center} zoom={zoom} > 
   <TileLayer
     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
