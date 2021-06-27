@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import './map.css'
 import {showDataOnMap} from "./util"
 const Mapp = (props) => {
-    const{zoom,center,countries}=props;
+    const{zoom,center,countries,casesType}=props;
     console.log('center',center)
     return ( 
         <div className="map">
