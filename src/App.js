@@ -20,6 +20,7 @@ function App() {
   const[tableData,setTableData] = useState([])
   const[mapCenter,setMapCenter] = useState([34.80746,-40.4796])
   const [mapZoom,setMapZoom] = useState(3)
+  const [mapCountries,setMapCountries] = useState()
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
     .then((response)=>{ return response.json()})
@@ -46,6 +47,7 @@ function App() {
     setCountries(countries)
     setTableData(sortedData);
     console.log("check",data)
+    setMapCountries(data)
     })
   
   }, [])
@@ -106,7 +108,7 @@ console.log("priya",mapCenter)
         <Infobox title="Deaths" total={countryInfo.deaths} cases={countryInfo.todayDeaths}/>
       </div>
      
-      <Mapp center ={mapCenter}  zoom={mapZoom}/>
+      <Mapp countries={mapCountries} center ={mapCenter}  zoom={mapZoom}/>
       </div>
     
     <Card className="app_right">
