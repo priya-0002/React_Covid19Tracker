@@ -12,6 +12,7 @@ import {sortData} from"./util"
 
 
 
+
 function App() {
  
   const[countries, setCountries]=useState([])

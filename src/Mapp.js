@@ -2,6 +2,8 @@ import React from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 import './map.css'
+
+
 import {showDataOnMap} from "./util"
 const Mapp = (props) => {
     const{zoom,center,countries,casesType}=props;
